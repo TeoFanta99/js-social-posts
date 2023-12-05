@@ -65,7 +65,9 @@ const posts = [
 
 // SELEZIONO elementi nel DOM
 const postContainer = document.getElementById("container");
-const likeBtn = document.getElementsByClassName(".likes__cta");
+
+// getElementsByClassName
+
 
 // GENERARE in maniera dinamica il template literal utilizzando il ciclo for
 for (let i = 0; i < posts.length; i++) {
@@ -101,12 +103,26 @@ for (let i = 0; i < posts.length; i++) {
         </div>            
     </div>
     `
-postContainer.innerHTML += post;
-
-
+    postContainer.innerHTML += post
 };
 
-function like () {
-    likeBtn.classList.add("liked");
-}
 
+const updatedLikeButtons = document.querySelectorAll(".js-like-button");
+
+updatedLikeButtons.forEach(likeBtn => {
+
+    likeBtn.addEventListener("click", function(element) {
+
+        // evita il refresh della pagina
+        element.preventDefault()
+
+        const isLiked = likeBtn.classList.contains("liked");
+
+        if (isLiked) {
+            likeBtn.classList.remove("liked");
+        } else {
+            likeBtn.classList.add("liked")
+        }
+
+    });
+});
