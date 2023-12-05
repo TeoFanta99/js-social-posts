@@ -65,7 +65,7 @@ const posts = [
 
 // SELEZIONO elementi nel DOM
 const postContainer = document.getElementById("container");
-const likeBtn = document.querySelector("like-button");
+const likeBtn = document.getElementsByClassName(".likes__cta");
 
 // GENERARE in maniera dinamica il template literal utilizzando il ciclo for
 for (let i = 0; i < posts.length; i++) {
@@ -102,10 +102,11 @@ for (let i = 0; i < posts.length; i++) {
     </div>
     `
 postContainer.innerHTML += post;
+
+
 };
 
 function like () {
-    likeBtn.classList.add("like-button--liked");
+    likeBtn.classList.add("liked");
 }
 
-likeBtn.addEventListener("click", like);
