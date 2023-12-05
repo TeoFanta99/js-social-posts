@@ -2,7 +2,7 @@
 Ricreiamo un feed social aggiungendo al layout di base fornito, il nostro script JS in cui:
 Milestone 1 - Prendendo come riferimento il layout di esempio presente nell’html, stampiamo i post del nostro feed, prendendo le informazioni che ci servono dall’array di oggetti che già trovate.
 
-Milestone 2 - Se clicchiamo sul tasto “Mi Piace” cambiamo il colore al testo del bottone e incrementiamo il counter dei likes relativo. Salviamo in un secondo array gli id dei post ai quali abbiamo messo il like.
+Milestone 2 - Se clicchiamo sul tasto “Mi Piace” cambiamo il colore al testo del bottone (FATTO) e incrementiamo il counter dei likes relativo. Salviamo in un secondo array gli id dei post ai quali abbiamo messo il like.
 */
 
 const posts = [
@@ -66,7 +66,6 @@ const posts = [
 // SELEZIONO elementi nel DOM
 const postContainer = document.getElementById("container");
 
-// getElementsByClassName
 
 
 // GENERARE in maniera dinamica il template literal utilizzando il ciclo for
@@ -107,22 +106,23 @@ for (let i = 0; i < posts.length; i++) {
 };
 
 
-const updatedLikeButtons = document.querySelectorAll(".js-like-button");
+const likeButtons = document.querySelectorAll(".like-button");
 
-updatedLikeButtons.forEach(likeBtn => {
+// aggiungi una serie di eventi al click del "mi piace"
+likeButtons.forEach((likeBtn, index) => {
 
     likeBtn.addEventListener("click", function(element) {
 
         // evita il refresh della pagina
-        element.preventDefault()
+        element.preventDefault();
 
+        // dichiaro variabile che verifica se l'elemento contiene la classe "liked"
         const isLiked = likeBtn.classList.contains("liked");
 
         if (isLiked) {
             likeBtn.classList.remove("liked");
         } else {
-            likeBtn.classList.add("liked")
+            likeBtn.classList.add("liked");
         }
-
     });
 });
