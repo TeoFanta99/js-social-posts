@@ -90,7 +90,7 @@ for (let i = 0; i < posts.length; i++) {
         <div class="post__footer">
             <div class="likes js-likes">
                 <div class="likes__cta">
-                    <a class="like-button  js-like-button" href="#" data-postid="1">
+                    <a class="like-button  js-like-button" href="#" data-postid=${posts[i].id}>
                         <i class="like-button__icon fas fa-thumbs-up" aria-hidden="true"></i>
                         <span class="like-button__label">Mi Piace</span>
                     </a>
@@ -107,9 +107,11 @@ for (let i = 0; i < posts.length; i++) {
 
 
 const likeButtons = document.querySelectorAll(".like-button");
+const likeCounter = document.querySelector(".js-likes-counter");
+
 
 // aggiungi una serie di eventi al click del "mi piace"
-likeButtons.forEach((likeBtn, index) => {
+likeButtons.forEach((likeBtn) => {
 
     likeBtn.addEventListener("click", function(element) {
 
@@ -118,11 +120,14 @@ likeButtons.forEach((likeBtn, index) => {
 
         // dichiaro variabile che verifica se l'elemento contiene la classe "liked"
         const isLiked = likeBtn.classList.contains("liked");
+        
 
         if (isLiked) {
             likeBtn.classList.remove("liked");
+            likeCounter.textContent = parseInt(likeCounter.textContent) - 1;
         } else {
             likeBtn.classList.add("liked");
+            likeCounter.textContent = parseInt(likeCounter.textContent) + 1;
         }
     });
 });
